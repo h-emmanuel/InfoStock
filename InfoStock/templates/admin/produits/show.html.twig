@@ -1,0 +1,121 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}ADMIN Voici la Page des Produits!{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!-- ================ start banner area ================= -->	
+<div class="super_container">
+    <div class="jumbotron">
+      <h1 class="display-4" style="text-align:center;">Liste des Produits</h1>
+    </div>
+    {% for flashMessage in app.session.flashbag.get('succes') %}
+      <div class="alert alert-succes">
+      {{flashMessage}}
+      </div>
+    {% endfor %}
+  
+    <h4>Rechercher un produit par :</h4>
+    <!-- Début du formulaire de recherche-->
+
+
+
+<!-- Début du tableau qui va afficher tous les produits -->
+  <div class="row">
+  </div>
+  
+  <table class="table table-striped">
+    <tr>
+      <th>Numero du Produit</th>
+      <th>Titre</th>
+      <th>Categorie</th>
+      <th>Sous-Categorie</th>
+      <th>Prix</th>
+      <th>Qte</th>
+      <th>En solde</th>
+      <th>Pourcentage du solde</th>
+      <th>Prix avec solde</th>
+      <th>Modifier</th>
+      <th>Supprimmer</th>
+    </tr>
+
+    {% for produit in produits %}
+      <tr>  
+      <td>
+          {{ produit.id}}
+        </td>
+        <td>
+          {{ produit.libelle}}
+        </td>
+        <td>
+          {# {{ produit.categorie }} #}
+        </td> 
+        <td>
+          {# {{ produit.souscat }} #}
+        </td> 
+        <td>
+          {{ produit.prix}}
+        </td> 
+        <td>
+          {# {{ produit.qte}} #}
+          25
+        </td>
+         
+          {% set k = 0 %}
+          {% if produit.solde == true %}
+            <td>
+                <p style="font-style: italic;font-size: 11px;"> Produit en Solde</p>
+            </td>
+            <td>
+              {% set i  =   produit.valeursolde * 100  %}
+              <p> {{ i }} %</p>
+            </td>
+            <td>
+              
+              {% set k = produit.prix-(produit.prix * produit.valeursolde) %}
+              <p>{{ k }}</p>
+            </td>
+          {% else %}
+              <td>
+                <p style="font-style: italic;font-size: 11px;">Ce Produit n'est pas en Solde</p>
+              </td>
+              <td>
+                null
+              </td>
+          {% endif %}
+        
+        <td>
+          <a href="{{path('admin.produits.edit',{'id':produit.id})}}">
+            <button>
+              <i class="ti-receipt"></i>
+            </button>
+          </a>
+        </td>
+        <td>
+          <a href="{{path('admin.produits.delete',{'id':produit.id})}}" 
+          onclick="return confirm(' Etes-vous sure de vouloir supprimmer ce produit ?')">
+            <button>
+              <i class="ti-close"></i>
+            </button>
+          </a>
+        </td>
+    
+
+      </tr>
+    {% endfor %}
+
+
+
+
+
+  </table>
+
+
+
+
+
+</div>
+{% endblock %}
+
+
