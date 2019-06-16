@@ -17,12 +17,14 @@ class AppFixtures extends Fixture
        
        $faker = Faker\Factory::create("fr_FR");
         
-       for($i=0; $i < 10 ; $i++){
+       for($i=0; $i < 100 ; $i++){
             $produits = new Produit();
-            $produits->setLibelle($faker->product)
+            $produits->setLibelle($faker->name)
                     ->setPrix($faker->randomDigit)
-                    ->setPropriete($faker->word)
-                    ->setImage("ordi.jpg")
+                    ->setDescription($faker->word)
+                    ->setValeursolde($faker->randomDigit)
+                    ->setImageName('yolo')
+                    
                          ;
 
 

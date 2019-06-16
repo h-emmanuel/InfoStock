@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Produit;
+use App\Entity\Recherche\RechercheProduit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,6 +20,37 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    
+    public function findProduit(RechercheProduit $search)
+    {
+        $query = $this->createQueryBuilder('p')
+        ;
+        if($search -> getTitre())
+        {
+            $titre= $search->getTitre();
+            $query = $query
+                        ->andWhere('p.libelle LIKE :titre')
+                        ->setParameter('titre','%'.$titre.'%')
+                    ;
+        }
+    
+        return $query->getQuery();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */

@@ -15,13 +15,21 @@
       {{flashMessage}}
       </div>
     {% endfor %}
-  
+      <!-- Dï¿½but du formulaire de recherche-->
+
     <h4>Rechercher un produit par :</h4>
-    <!-- Début du formulaire de recherche-->
+		{{form_start(formSearch)}}
+		<div>
+			{# {{ form_row(formSearch.titre, { 'attr': { 'placeholder': "Titre " } } ) }} #}
+		<span>{{form_row(formSearch.titre)}}</span>
+    <button class= "btn btn-success" type="submit">
+			Rechercher
+		</button> 
+    {{form_end(formSearch)}}
 
+  <!--  Fin du formulaire de recherche -->
 
-
-<!-- Début du tableau qui va afficher tous les produits -->
+<!-- Dï¿½but du tableau qui va afficher tous les produits -->
   <div class="row">
   </div>
   
@@ -111,11 +119,14 @@
 
   </table>
 
-
+<div class="pagination">
+			{{  knp_pagination_render(produits) }}
+		</div>
 
 
 
 </div>
+
 {% endblock %}
 
 
