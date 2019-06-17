@@ -57,10 +57,10 @@
           {{ produit.libelle}}
         </td>
         <td>
-          {# {{ produit.categorie }} #}
+          {{ produit.souscategory.category.titre }}
         </td> 
         <td>
-          {# {{ produit.souscat }} #}
+          {{ produit.souscategory.titre }}
         </td> 
         <td>
           {{ produit.prix}}
@@ -89,23 +89,25 @@
                 <p style="font-style: italic;font-size: 11px;">Ce Produit n'est pas en Solde</p>
               </td>
               <td>
+                0%
+              </td>
+              <td>
                 null
               </td>
           {% endif %}
         
         <td>
-          <a href="{{path('admin.produits.edit',{'id':produit.id})}}">
-            <button>
+        <a href="{{path('admin.produits.edit',{'id':produit.id})}}">
+          {# <button></button> #}
               <i class="ti-receipt"></i>
-            </button>
-          </a>
+          
+        </a>
         </td>
         <td>
           <a href="{{path('admin.produits.delete',{'id':produit.id})}}" 
           onclick="return confirm(' Etes-vous sure de vouloir supprimmer ce produit ?')">
-            <button>
+            {# <button></button> #}
               <i class="ti-close"></i>
-            </button>
           </a>
         </td>
     

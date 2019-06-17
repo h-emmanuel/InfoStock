@@ -68,7 +68,7 @@ class AdminProduitController extends AbstractController
     
     
     /**
-     * @Route("/admin/add", name="admin.produits.add")
+     * @Route("/admin/add/produit", name="admin.produits.add")
      */
     public function addProduit(Request $request,ObjectManager $manager)
     {
@@ -76,7 +76,6 @@ class AdminProduitController extends AbstractController
 
         $form=$this->createForm(ProduitType::class,$produit);
         $form->handlerequest($request);
-        dump($produit);
         if($form->isSubmitted() && $form->isValid()){
             $manager->persist($produit);
             $manager->flush();

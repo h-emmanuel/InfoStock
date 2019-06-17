@@ -1,0 +1,124 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}ADMIN Voici la Page des categories!{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!-- ================ start banner area ================= -->	
+<div class="super_container">
+    <div class="jumbotron">
+      <h1 class="display-4" style="text-align:center;">Liste des Categories</h1>
+    </div>
+    {% for flashMessage in app.session.flashbag.get('succes') %}
+      <div class="alert alert-succes">
+      {{flashMessage}}
+      </div>
+    {% endfor %}
+      <!-- Dï¿½but du formulaire de recherche-->
+  <!--  Fin du formulaire de recherche -->
+
+<!-- Dï¿½but du tableau qui va afficher tous les categoriess -->
+  <div class="row">
+  </div>
+  
+  <table class="table table-striped">
+    <tr>
+      <th>Id</th>
+      <th>Ordre d'affichage</th>
+      <th>Categorie</th>
+      <th>Modifier</th>
+      <th>Supprimmer</th>
+    </tr>
+
+    {% for categorie in Categories %}
+      <tr>  
+      <td>
+          {{ categorie.id}}
+        </td>
+        <td>
+          {{ categorie.ordre}}
+        </td>  
+        <td>
+          {{ categorie.titre}}
+        </td>
+        <td>
+        <a href="{{path('admin.Categories.edit',{'id':categorie.id})}}">
+          {# <button></button> #}
+              <i class="ti-receipt"></i>
+        </a>
+        </td>
+        <td>
+          <a href="{{path('admin.Categories.delete',{'id':categorie.id})}}" 
+          onclick="return confirm(' Etes-vous sure de vouloir supprimmer cette categorie ?')">
+            {# <button></button> #}
+              <i class="ti-close"></i>
+          </a>
+        </td>
+    
+
+      </tr>
+    {% endfor %}
+  </table>
+
+   <div class="jumbotron">
+      <h1 class="display-4" style="text-align:center;">Liste des Sous-Categories</h1>
+    </div>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Id</th>
+      <th>Ordre d'affichage</th>
+      <th>Categorie</th>
+      <th>Sous-Categorie</th> 
+      <th>Modifier</th>
+      <th>Supprimmer</th>
+    </tr>
+
+    {% for souscategorie in Souscategories %}
+      <tr>  
+      <td>
+          {{ souscategorie.id}}
+        </td>
+        <td>
+          {{ souscategorie.ordre}}
+        </td>    
+        <td>
+          {{ souscategorie.category.titre}}
+        </td>
+        <td>
+          {{ souscategorie.titre}}
+        </td>
+        <td>
+        <a href="{{path('admin.Souscategories.edit',{'id':souscategorie.id})}}">
+          {# <button></button> #}
+              <i class="ti-receipt"></i>
+        </a>
+        </td>
+        <td>
+          <a href="{{path('admin.Souscategories.delete',{'id':souscategorie.id})}}" 
+          onclick="return confirm(' Etes-vous sure de vouloir supprimmer cette souscategorie ?')">
+            {# <button></button> #}
+              <i class="ti-close"></i>
+          </a>
+        </td>
+    
+
+      </tr>
+    {% endfor %}
+  </table>
+
+<div class="pagination">
+			{{  knp_pagination_render(Categories) }}
+		</div>
+<div class="pagination">
+			{{  knp_pagination_render(Souscategories) }}
+		</div>
+
+
+
+</div>
+
+{% endblock %}
+
+

@@ -3,10 +3,12 @@
 namespace App\Form\Produit;
 
 use App\Entity\Produit;
+use App\Entity\Souscategory;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -45,6 +47,11 @@ class ProduitType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
             ])
+            ->add('souscategory',EntityType::class,[
+                'class'=> Souscategory::class,
+                'choice_label' => 'titre'
+            ])
+            
 
             
         ;

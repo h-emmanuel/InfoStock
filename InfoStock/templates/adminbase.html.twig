@@ -43,11 +43,16 @@
             </div>
             <div class="jumbotron mt-2" style="background-color: #AAAAAA">
                 <span style="font-size: x-large">
-                    Commande
+                    Categorie
                 </span>
                 <ul>
-                    <li>Liste des commandes</li>
-                    <li>Ajouter un commande</li>
+                    <li><a href="{{ path("admin.Categories") }}" style="text-decoration: none; color: black; "> Liste des Categories </a>
+                    </li>
+                    <li><a href="{{ path("admin.Categories.add") }}" style="text-decoration: none; color: black; "> Ajouter une categorie </a>
+                    </li>
+                    </li>
+                    <li><a href="{{ path("admin.Souscategories.add") }}" style="text-decoration: none; color: black; "> Ajouter une souscategorie </a>
+                    </li>
                 </ul>
 
             </div>

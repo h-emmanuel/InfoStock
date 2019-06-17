@@ -1,0 +1,45 @@
+{% extends 'adminbase.html.twig' %}
+
+{% form_theme formCategories 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid mt-4">
+
+    <div class="jumbotron">
+
+        <h1 class="display-4" style="text-align: center;"> Ajouter une nouvelle  Categorie</h1>
+
+    </div>
+
+        {{ form_start(formCategories) }}
+
+        <div class="row">
+
+            <div class="col-md-2">
+
+                {{ form_row(formCategories.titre) }}
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                 {{ form_row(formCategories.ordre)}} 
+ 
+            </div>
+
+        </div>
+            <button class="btn btn-success" type="submit">
+            Créer une nouvelle Catégorie !
+        </button>
+
+        {{ form_end(formCategories) }}
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}

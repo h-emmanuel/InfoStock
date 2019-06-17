@@ -12,7 +12,7 @@ class RechercheProduit{
 
 
 
-    /**
+/**
  *@return string|null
 */
     public function getTitre(): ?string

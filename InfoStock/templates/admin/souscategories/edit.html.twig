@@ -1,0 +1,53 @@
+{% extends 'adminbase.html.twig' %}
+
+{% form_theme formSouscategories 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid mt-4">
+
+    <div class="jumbotron">
+
+        <h1 class="display-4" style="text-align: center;"> Modifier le Categories
+    </h1>
+
+    </div>
+
+        {{ form_start(formSouscategories ) }}
+
+        <div class="row">
+
+            <div class="col-md-2">
+
+                {{ form_row(formSouscategories.titre) }}
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                 {{ form_row(formSouscategories.ordre)}} 
+ 
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                 {{ form_row(formSouscategories.categorie)}} 
+ 
+            </div>
+
+        </div>
+        <button class="btn btn-success" type="submit">
+            Enregistrer les modifications !
+        </button>
+
+        {{ form_end(formSouscategories) }}
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}

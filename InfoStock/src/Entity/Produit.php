@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
- *  @Vich\Uploadable
+ * @Vich\Uploadable
  */
 class Produit
 {
@@ -81,7 +81,13 @@ class Produit
      * )
      * 
      */
-    private $valeursolde; 
+    private $valeursolde;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Souscategory", inversedBy="produit")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $souscategory; 
     
     public function getId(): ?int
     {
@@ -193,6 +199,18 @@ class Produit
     public function setValeursolde(float $valeursolde): self
     {
         $this->valeursolde = $valeursolde;
+
+        return $this;
+    }
+
+    public function getSouscategory(): ?Souscategory
+    {
+        return $this->souscategory;
+    }
+
+    public function setSouscategory(?Souscategory $souscategory): self
+    {
+        $this->souscategory = $souscategory;
 
         return $this;
     }
