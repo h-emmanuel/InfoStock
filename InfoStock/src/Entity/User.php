@@ -62,6 +62,11 @@ class User implements UserInterface
      */
     private $cat;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
 
 
 
@@ -204,6 +209,18 @@ class User implements UserInterface
     public function setCat(?string $cat): self
     {
         $this->cat = $cat;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -1,0 +1,102 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}ADMIN Voici la Page des utilisateurs!{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!-- ================ start banner area ================= -->	
+<div class="super_container">
+    <div class="jumbotron">
+      <h1 class="display-4" style="text-align:center;">Liste des utilisateurs</h1>
+    </div>
+    {% for flashMessage in app.session.flashbag.get('succes') %}
+      <div class="alert alert-succes">
+      {{flashMessage}}
+      </div>
+    {% endfor %}
+    
+      {# <!-- Dï¿½but du formulaire de recherche-->
+
+    <h4>Rechercher un produit par :</h4>
+		{{form_start(formSearch)}}
+		<div>
+			 {{ form_row(formSearch.titre, { 'attr': { 'placeholder': "Titre " } } ) }} 
+		<span>{{form_row(formSearch.titre)}}</span>
+    <button class= "btn btn-success" type="submit">
+			Rechercher
+		</button> 
+    {{form_end(formSearch)}}
+
+  <!--  Fin du formulaire de recherche --> #}
+
+<!-- Dï¿½but du tableau qui va afficher tous les produits -->
+  <div class="row">
+  </div>
+  
+  <table class="table table-striped">
+    <tr>
+      <th>ID de l'utilisateur</th>
+      <th>Email</th>
+      <th>Rôle</th>
+      <th>Modifier</th>
+      <th>Supprimer</th>
+      
+    </tr>
+
+    {% for user in users %}
+      <tr>  
+      <td>
+          {{ user.id}}
+        </td>
+        <td>
+          {{ user.email}}
+        </td>
+        <td>
+          {% if is_granted('ROLE_ADMIN') %}
+          Administrateur
+          {% else %}
+          Utilisateur
+          {% endif %}
+        </td>
+       
+        
+         
+          
+        
+        {# <td>
+        <a href="{{path('admin.produits.edit',{'id':produit.id})}}">
+           <button></button> 
+              <i class="ti-receipt"></i>
+          
+        </a>
+        </td> 
+        <td>
+          <a href="{{path('admin.produits.delete',{'id':produit.id})}}" 
+          onclick="return confirm(' Etes-vous sure de vouloir supprimmer ce produit ?')">
+            <button></button> 
+              <i class="ti-close"></i>
+          </a>
+        </td>
+        #}
+
+      </tr>
+    {% endfor %}
+
+
+
+
+
+  </table>
+
+{# <div class="pagination">
+			{{  knp_pagination_render(produits) }}
+		</div> #}
+
+
+
+</div>
+
+{% endblock %}
+
+
