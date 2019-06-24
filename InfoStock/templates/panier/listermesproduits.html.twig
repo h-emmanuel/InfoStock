@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello PanierController!{% endblock %}
+{% block body %}
+<div class="hero-wrap js-fullheight" style="background-image: url({{asset('images/bg_5.jpg')}});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+          <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="{{path('home')}}">Home</a></span> <span>produits</span></p>
+            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">produits</h1>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="container">
+        <table class="table table-bordered">
+               
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Supprimer</th>
+                        
+                    </tr>
+                        {% set total = 0 %}
+                        {% set i = 0 %}
+                        {% set totalgeneral = 0 %}
+                        {% for detail in details %}
+                        {% set i = i + 1 %}
+                        
+                    <tr>
+                        <th> {{ i }}</th>
+                                <td>{{detail.produit.libelle}}</td>
+                                <td><select name="" id="" onchange='modifQuantite("{{ detail.produit.id }}",this.value)'>
+                                    {% for i in 1..10 %}
+                                        <option value="{{i}}"
+                                                {% if detail.qcom == i %}
+                                                    selected
+                                                    {% set total = detail.qcom * i %}
+                                                 {% endif %} >
+                                                {{ i }}
+                                                
+                                        </option>
+                                    {% endfor %}
+                                    {{ detail.qcom}}
+                                    </select>
+                                </td>
+                                {% if detail.produit.solde == true %}
+                                {% set prixsolde = detail.produit.prix * detail.produit.valeursolde %}
+									               <td> {{ detail.produit.prix}}</td>
+                                <td>{{ detail.qcom * prixsolde }}</td>
+                                 {% set totalgeneral = totalgeneral + (prixsolde) %}
+                                 {% else %}
+                                 <td> {{ detail.produit.prix}}</td>
+                                <td>{{ detail.qcom * detail.produit.prix }}</td>
+                                 {% set totalgeneral = totalgeneral + (detail.qcom * detail.produit.prix) %}
+                        {% endif %}
+                        <td> <a class="btn btn-secondary"  href="{{path('panier.delete')}}"> Sup </a></td> 
+                          </tr>
+                {% endfor %}
+            <tr>
+                <td> Votre commande est de : {{ totalgeneral  }}$ c'est tout </td>
+                <td> <a class="btn btn-secondary"  href="{{ path('produits') }}">  retour aux produits </a></td> 
+                <td><a class="btn btn-secondary"  href="{{path('payer')}}"> Payer </a> </td> 
+            </tr>
+        </table>
+       </div>
+ 
+{% endblock %}
+

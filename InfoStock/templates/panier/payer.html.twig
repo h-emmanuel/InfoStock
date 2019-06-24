@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% form_theme formPayement 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+    <div class="container-fluid mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4" style="text-align: center;"> Paiement</h1>
+        </div>
+        {{ form_start(formPayement) }}
+         
+        <div class="row">
+            <div class="col-md-2">
+                {{ form_row(formPayement.numcarte, {'attr': {'placeholder': "numero de la carte"}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(formPayement.codesecurite, {'attr': {'placeholder' :"code de securite"}})  }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formPayement.dateexpiration) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formPayement.adress, {'attr': {'placeholder':"l adress"}}) }}
+            </div>
+        </div>
+       
+        {{ form_widget(formPayement) }}
+        <button class="btn btn-success" type="submit">
+            Confirmer
+        </button>
+        {{ form_end(formPayement) }}
+
+    </div>
+{% endblock %} 
