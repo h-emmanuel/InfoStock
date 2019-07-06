@@ -1,0 +1,83 @@
+{% extends 'adminbase.html.twig' %}
+
+{% form_theme formUser 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid mt-4">
+
+    <div class="jumbotron">
+
+        <h1 class="display-4" style="text-align: center;"> Modifier un utilisateur</h1>
+
+    </div>
+
+        {{ form_start(formUser) }}
+
+        <div class="row">
+
+            <div class="col-md-2">
+
+                {{ form_row(formUser.email) }}
+
+            </div>
+
+        </div>
+         <div class="row">
+
+            <div class="col-md-2">
+
+                {{ form_row(formUser.roles) }}
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                 {{ form_row(formUser.password)}} 
+ 
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formUser.nom) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formUser.adresse)}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formUser.localite) }}
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formUser.compte) }}
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-3">
+                {{ form_row(formUser.cat) }}
+            </div>
+        </div>
+
+        <button class="btn btn-success" type="submit">
+            Enregistrer les modifications !
+        </button>
+
+        {{ form_end(formUser) }}
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}
