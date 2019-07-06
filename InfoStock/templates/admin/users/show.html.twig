@@ -1,0 +1,110 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}ADMIN Voici la Page des Produits!{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!-- ================ start banner area ================= -->	
+<div class="super_container">
+    <div class="jumbotron">
+      <h1 class="display-4" style="text-align:center;">Liste des Produits</h1>
+    </div>
+    {% for flashMessage in app.session.flashbag.get('succes') %}
+      <div class="alert alert-succes">
+      {{flashMessage}}
+      </div>
+    {% endfor %}
+      <!-- D�but du formulaire de recherche-->
+
+    <h4>Rechercher un produit par :</h4>
+		{{form_start(formSearch)}}
+		<div>
+			{{ form_row(formSearch.nom, { 'attr': { 'placeholder': "Nom " } } ) }}
+		<span>{{form_row(formSearch.nom)}}</span>
+    <button class= "btn btn-success" type="submit">
+			Rechercher
+		</button> 
+    {{form_end(formSearch)}}
+
+  <!--  Fin du formulaire de recherche -->
+
+<!-- D�but du tableau qui va afficher tous les produits -->
+  <div class="row">
+  </div>
+  
+  <table class="table table-striped">
+    <tr>
+      <th>Numero du Produit</th>
+      <th>Titre</th>
+      <th>Categorie</th>
+      <th>Sous-Categorie</th>
+      <th>Prix</th>
+      <th>Qte</th>
+      <th>En solde</th>
+      <th>Pourcentage du solde</th>
+      <th>Prix avec solde</th>
+      <th>Modifier</th>
+      <th>Supprimmer</th>
+    </tr>
+
+    {% for user in users %}
+      <tr>  
+      <td>
+          {{ user.id}}
+        </td>
+        <td>
+          {{ user.email}}
+        </td>
+        <td>
+          {{ user.nom }}
+        </td> 
+        <td>
+          {{ user.adresse }}
+        </td> 
+        <td>
+          {{ user.localite}}
+        </td> 
+        <td>
+          {{ user.compte}} 
+          25
+        </td>
+         <td>
+          {{ user.cat }}
+        
+        <td>
+        {# <a href="{{path('admin.produits.edit',{'id':produit.id})}}">
+          <button></button>
+              <i class="ti-receipt"></i>
+          
+        </a> #}
+        </td>
+        <td>
+          {# <a href="{{path('admin.produits.delete',{'id':produit.id})}}" 
+          onclick="return confirm(' Etes-vous sure de vouloir supprimmer ce produit ?')">
+            <button></button>
+              <i class="ti-close"></i>
+          </a> #}
+        </td>
+    
+
+      </tr>
+    {% endfor %}
+
+
+
+
+
+  </table>
+
+<div class="pagination">
+			{{  knp_pagination_render(users) }}
+		</div>
+
+
+
+</div>
+
+{% endblock %}
+
+

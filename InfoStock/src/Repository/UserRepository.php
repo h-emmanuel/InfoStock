@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\Recherche\RechercheUtilisateur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -18,6 +19,23 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public function findUser(RechercheUtilisateur $search)
+    {
+        $query = $this->createQueryBuilder('p')
+        ;
+        if($search -> getNom())
+        {
+            $nom= $search->getNom();
+            $query = $query
+                        ->andWhere('p.nom LIKE :nom')
+                        ->setParameter('nom','%'.$nom.'%')
+                    ;
+        }
+    
+        return $query->getQuery();
+    }
+    
 
     // /**
     //  * @return User[] Returns an array of User objects
