@@ -129,7 +129,7 @@
                   <div class="card-product__img">
                     <img class="card-img" src="{{asset('images/'~produit.imageName)}}" alt="">
                     <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
+                      <li><button><a href="{{ path('produits.detail',{'id':produit.id}) }}"><i class="ti-search"></i></a></button></li>
                       <li><a href="{{ path ('panier.addShow',{'id':produit.id})}}"><button><i class="ti-shopping-cart"></i></button></a></li>
                       <li><button><i class="ti-heart"></i></button></li>
                     </ul>
