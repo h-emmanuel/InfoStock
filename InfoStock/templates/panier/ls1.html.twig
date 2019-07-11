@@ -1,0 +1,51 @@
+
+
+    <div class="container">
+        <h1 class="">Ici le Panier</h1>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">
+                    #</th>
+                <th scope="col">Produit</th>
+                <th scope="col">Quantités</th>
+                {# <th scope="col">Prix</th>
+                <th scope="col">Total</th> #}
+            </tr>
+            </thead>
+            <tbody>
+            {% set i = 0 %}
+            {% for detail in details %}
+                {% set i = i + 1 %}
+                <tr>
+                    <th>
+                        {{ i }}</th>
+                    <td>
+                        {{detail.produit.libelle}}</td>
+                    <td>
+                        <select name="" id="" onchange='modifQuantite("{{detail.produit.id}}",this.value)'>
+                            {% for i in 1..20 %}
+                                <option value="{{i}}" 
+                                {% if detail.qcom == i %} selected  {% endif %} > 
+                                {{i}}
+                                </option>
+                            {% endfor %}
+                       </select>
+                    </td>
+                    <td>
+                        <bouton ><img src="{{asset("image/icons8-cancel-48.png")}}" height='40px' width='20px' onclick="{{ path('panier.delete',{'id': detail.produit.id} ) }}"</button>
+                    </td>
+                    {# <td>
+                        {{ detail.produit.prix}}</td>
+                    <td>
+                        {{ detail.qcom * detail.produit.prix}}</td> #}
+                </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-success" href="{{ path('produits') }}">
+            Retour Ã  la vitrine !
+        </a>
+        <a class="btn btn-secondary" href="{{ path('panier') }}">
+           Afficher le Panier
+        </a>
+    </div>

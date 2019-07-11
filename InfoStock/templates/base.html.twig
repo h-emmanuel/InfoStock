@@ -80,13 +80,10 @@
                         </li>
                       </ul>
               {% endif %}    
-                      
-                    
-
                     <ul class="nav-shop">
                     <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                    <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                    <li class="nav-item"><a class="button button-header" href="#">Acheter Maintenant</a></li>
+                    <li class="nav-item"><button><a href"{{path('panier')}}"i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+                    <li class="nav-item"><a class="button button-header" href="{{path('panier')}}">Acheter Maintenant</a></li>
                     </ul>
                 </div>
                 </div>

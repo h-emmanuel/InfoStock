@@ -36,10 +36,6 @@ class AdminProduitController extends AbstractController
 
     }
 
-
-
-
-
     /**
      * @Route("/admin/produits", name="admin.produits")
      */
