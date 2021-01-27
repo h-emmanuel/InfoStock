@@ -6,9 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ * @UniqueEntity(fields={"libelle"}, message="Le nom du produit que vous avez entré est déjà utilisé.")
  * @Vich\Uploadable
  */
 class Produit
@@ -21,7 +24,7 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique="true")
+     * @ORM\Column(type="string", length=255, unique= true )
      */
     private $libelle;
 

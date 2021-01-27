@@ -36,6 +36,10 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Regex(
+     *      pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-+_]).{5,20}$/",
+     *      message = "Votre mot de passe doit contenir au moins une lettre miniscule, une lettre majuscule, un chiffre un caractère spécial('+','-','_') 
+     *      et dois faire au minimum 5 caractères")
      */
     private $password;
 
@@ -47,29 +51,35 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255 )
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/",
+     *     message="Votre nom ne peut pas contenir de nombre."
+     * )
      */
     private $nom;
+    
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/",
+     *     message="Votre prénom ne peut pas contenir de nombre."
+     * )
+     */
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $localite;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $compte;
-
-    /**
-     * @ORM\Column(type="string", length=2, nullable=true)
-     */
-    private $cat;
 
 
 
@@ -174,13 +184,28 @@ class User implements UserInterface
     {
         return $this->nom;
     }
-
     public function setNom(?string $nom): self
     {
         $this->nom = $nom;
 
         return $this;
     }
+
+    
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+   
+
+   
 
     public function getAdresse(): ?string
     {
@@ -194,18 +219,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLocalite(): ?string
-    {
-        return $this->localite;
-    }
-
-    public function setLocalite(?string $localite): self
-    {
-        $this->localite = $localite;
-
-        return $this;
-    }
-
+   
     public function getCompte(): ?float
     {
         return $this->compte;
@@ -218,17 +232,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCat(): ?string
-    {
-        return $this->cat;
-    }
-
-    public function setCat(?string $cat): self
-    {
-        $this->cat = $cat;
-
-        return $this;
-    }
+    
 
    
 

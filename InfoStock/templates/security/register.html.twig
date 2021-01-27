@@ -3,18 +3,30 @@
 {% block title %}Inscrire un client {% endblock %}
 
 {% block body %}
-<div class="container-fluid mt-4">
-    <div class="jumbotron">
-        <h1 class="display-4" style="text-align: center;">Inscrire un client</h1>
+<div class="container-fluid mt-16">
+    <div class="milieu">
+        <div class="rapetissement">
+            <div class="jumbotron">    
+                <h1 class="display-4" style="text-align: center;">Inscription</h1>
+            </div>
+        </div>
+        
+        
+       {{ form_start(registrationForm) }}
+       <div class="rapetissement">  
+           {{ form_row(registrationForm.email , {'label' : 'Email' , 'attr' : {'placeholder' : 'Entrez votre Email'}} ) }}
+            {{ form_row(registrationForm.password , {'label' : 'Mot de passe','attr' : {'placeholder': 'Entrez un mot de passe' }} ) }}
+            {{form_row(registrationForm.confirmPassword, {'label':'Confirmation du mot de passe' ,'attr' : {'placeholder': 'Confirmer votre mot de passe'}})}}
+            {{ form_row(registrationForm.nom, {'label' : 'Nom ', 'attr' :{ 'placeholder':'Entrer votre nom' } })}}
+            {{ form_row(registrationForm.prenom, {'label' : 'Prénom ', 'attr' :{ 'placeholder':'Entrer votre prenom' } })}}
+            <button  type="submit" class="btn btn-primary"> Créer un nouveau compte </button> 
+        </div>
+       <br>
+        {{ form_end(registrationForm) }}
     </div>
+    
+          
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email , {'label' : 'Email' , 'attr' : {'placeholder' : 'Entrez votre Email'}} ) }}
-        {{ form_row(registrationForm.password , {'label' : 'Mot de passe','attr' : {'placeholder': 'Entrez un mot de passe' }} ) }}
-        {{form_row(registrationForm.confirmPassword, {'label':'Confirmation du mot de passe' ,'attr' : {'placeholder': 'Confirmer votre mot de passe'}})}}
-    {{ form_widget(registrationForm) }}
-        <button  type="submit" class="btn btn-success"> OK </button>
-    {{ form_end(registrationForm) }}
-
+            
 </div>
 {% endblock %}

@@ -27,8 +27,7 @@ class RegistrationFormType extends AbstractType
             ->add('password', PasswordType::class)
             ->add('confirmPassword',PasswordType::class)
             ->add('nom')
-            ->add('adresse')
-            ->add('localite')
+            ->add('prenom')
         ;
     }
 
